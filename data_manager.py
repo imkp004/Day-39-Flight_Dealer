@@ -11,16 +11,22 @@ class DataManager:
         self.auth_password = os.environ.get("google_sheet_password")
 
     def get_data(self):
-        response = requests.get(url=self.url, auth=(self.auth_username, self.auth_password))
-        return response.json()['prices']
+        # response = requests.get(url=self.url, auth=(self.auth_username, self.auth_password))
+        # return response.json()['prices']
+        response = requests.get(url=self.url)
+        return response.json()
+
 
     def update_data(self, each_item):
-        to_update = f"{self.url}/{each_item['id']}"
+        # to_update = f"{self.url}/{each_item['id']}"
+        to_update = f"{self.url}/city/{each_item['city']}"
         body = {
-            "price": {
-                'iataCode': each_item['iataCode'],
-                'lowestPrice': each_item['lowestPrice']
+            'iataCode': each_item['iataCode'],
+            'todayPrice': each_item['todayPrice']
             }
+        header = {
+            "Content-Type": "application/json"
         }
 
-        response = requests.put(url=to_update, json=body, auth=(self.auth_username, self.auth_password))
+        # response = requests.put(url=to_update, json=body)
+        response = requests.patch(url=to_update, headers=header, json=body)
