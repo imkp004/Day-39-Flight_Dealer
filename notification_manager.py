@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 import os
 import requests
+load_dotenv()
 
 class NotificationManager:
     #This class is responsible for sending notifications with the deal flight details.
