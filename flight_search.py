@@ -58,13 +58,13 @@ class FlightSearch:
         url = "https://test.api.amadeus.com/v2/shopping/flight-offers"
 
         parameter = {
-            "originLocationCode": "ZRH",
+            "originLocationCode": "BOS",
             "destinationLocationCode": destination_Location_Code,
             "departureDate": departure_Date,
             "returnDate": return_Date,
             "adults": 1,
-            "currencyCode": "GBP",
-            "nonStop": 'true',
+            "currencyCode": "USD",
+            "nonStop": "false",
         }
 
         header = {
